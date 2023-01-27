@@ -1,16 +1,28 @@
-const express = require('express');
-const dotenv = require('dotenv');
+import express = require('express');
+import 'express-async-errors';
 import routes from './route';
+import cors = require('cors');
 
-dotenv.config();
+class App {
+  public app: express.Express;
 
-const app = express();
-const PORT = process.env.PORT_BACK_END || 3005;
+  constructor() {
+    this.app = express();
 
-app.use(express.json());
+    this.config();
+  }
 
-app.use('/', routes);
+  private config(): void {
+    this.app.use(cors());
+    this.app.use(express.json());
+    this.app.use('/', routes);
+  }
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+  public start(PORT: string | number): void {
+    this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
+  }
+}
+
+export { App };
+
+export const { app } = new App();
