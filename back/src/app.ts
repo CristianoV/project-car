@@ -16,6 +16,19 @@ class App {
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use('/', routes);
+    this.app.use(
+      (
+        err: Error,
+        req: express.Request,
+        res: express.Response,
+        next: express.NextFunction
+      ) => {
+        if (err) {
+          return res.status(400).json({ error: err.message });
+        }
+        next();
+      }
+    );
   }
 
   public start(PORT: string | number): void {
