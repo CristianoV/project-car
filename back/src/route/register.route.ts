@@ -1,14 +1,14 @@
 import { Request, Response, Router } from 'express';
+import UserModel from '../database/models/user';
+import UserService from '../service/register.service';
+import RegisterController from '../controller/register.controller';
 
-const router = Router();
+const RegisterRoutes: Router = Router();
+const registerService = new UserService(UserModel);
+const registerController = new RegisterController(registerService);
 
-router.post('/register', (req: Request, res: Response) => {
-  const { name, email, password } = req.body;
-  res.status(200).json({
-    name,
-    email,
-    password,
-  });
-});
+RegisterRoutes.post('/register', (request: Request, response: Response) =>
+  registerController.register(request, response)
+);
 
-export default router;
+export default RegisterRoutes;

@@ -1,8 +1,14 @@
 import { Request, Response, Router } from 'express';
-import login from '../controler/login.controler';
+import UserModel from '../database/models/user';
+import UserService from '../service/login.service';
+import LoginController from '../controller/login.controller';
 
-const router = Router();
+const LoginRoutes: Router = Router();
+const loginService = new UserService(UserModel);
+const loginController = new LoginController(loginService);
 
-router.get('/login', login);
+LoginRoutes.post('/login', (request: Request, response: Response) =>
+  loginController.login(request, response)
+);
 
-export default router;
+export default LoginRoutes;
