@@ -3,6 +3,8 @@ import User from '../database/models/user';
 import Bcrypt from '../utils/BcriptService';
 import JwtSecret from '../utils/JwtService';
 
+import { RegisterData, RegisterSchema } from '../interface/IData/IRegisterData';
+
 export default class RegisterService {
   constructor(private model: typeof User) {}
 
@@ -19,13 +21,16 @@ export default class RegisterService {
     return newAccount;
   }
 
-  public async registerUser({
-    name,
-    password,
-  }: {
-    name: string;
-    password: string;
-  }) {
+  public async registerUser({ name, password }: RegisterData) {
+    const parsed = RegisterSchema.safeParse({ name, password });
+
+    if (!parsed.success) {
+      const { message } = parsed.error;
+      const customMessage = JSON.parse(message);
+
+      throw new Error(customMessage[0].message);
+    }
+
     const { id: accountId } = await this.registerAccount('admin' as any);
 
     const encrypt = Bcrypt.encrypt(password);
