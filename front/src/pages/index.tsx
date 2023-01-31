@@ -35,16 +35,23 @@ export default function Home({ cars }: HomeProps) {
             id=''
             placeholder='Busque por marca ou modelo'
           />
+          <button className="btn btn-secondary" type="button" id="button-addon2" >Pesquise</button>
         </div>
       </main>
+      <section className={styles.cars}>
       {carApi.map((car) => {
         return (
-          <div key={car.id}>
-            <h1>{car.name}</h1>
-            <h2>{car.marca}</h2>
-            <h3>{car.modelo}</h3>
-            <h4>{car.value}</h4>
-            <Image src={car.foto} alt={car.name} width={100} height={100} />
+            <div className={`card ${styles.carsImage}`} key={car.id}>
+              <img src={car.foto} className='card-img-top' alt={car.name} />
+              <div className='card-body'>
+                <h5 className='card-title'>{car.name}</h5>
+                <p className='card-text'>
+                  {car.marca} • {car.modelo} • R$ {car.value}
+                </p>
+                <a href='#' className='btn btn-primary'>
+                  Detalhes
+                </a>
+              </div>
           </div>
         );
       })}
