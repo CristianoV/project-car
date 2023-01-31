@@ -26,3 +26,26 @@
     }
   }
 }
+
+.dropdown {
+  ul {
+    align-self: center;
+    justify-self: center;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 848px) {
+  .container {
+    nav {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 848px) {
+  .dropdown {
+    display: none;
+  }
+}
