@@ -32,7 +32,7 @@ export default class CarController {
       marca,
       value,
       modelo,
-      foto: file.path,
+      foto: file.filename,
     });
 
     return res.status(202).json(car);
