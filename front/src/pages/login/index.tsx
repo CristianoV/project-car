@@ -23,7 +23,12 @@ export default function Login() {
         <title>Conecte-se | Venha comprar com a gente!</title>
       </Head>
       <section className={styles.container}>
-        <Image src={loginImage} alt='Login' />
+        <Image
+          src={loginImage}
+          alt='Login'
+          placeholder='blur'
+          blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='
+        />
         <article>
           <h1>Inicie sessão</h1>
           <h3>Adicione um usuario e uma senha!</h3>

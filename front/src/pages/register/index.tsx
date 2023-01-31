@@ -23,7 +23,12 @@ export default function Register() {
         <title>Registre-se | Faça a sua conta!</title>
       </Head>
       <section className={styles.container}>
-        <Image src={registerImage} alt='Login' />
+        <Image
+          src={registerImage}
+          alt='Login'
+          placeholder='blur'
+          blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='
+        />
         <article>
           <h1>Crie sua conta</h1>
           <h3>Adicione um usuario e uma senha!</h3>
