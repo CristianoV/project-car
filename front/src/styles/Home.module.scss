@@ -23,3 +23,14 @@
     }
   }
 }
+
+.carsImage {
+  margin: 1rem;
+  width: 14rem;
+}
+
+.cars {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
