@@ -2,6 +2,7 @@ import express = require('express');
 import 'express-async-errors';
 import routes from './route';
 import cors = require('cors');
+const path = require('path');
 
 class App {
   public app: express.Express;
@@ -16,6 +17,7 @@ class App {
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use('/', routes);
+    this.app.use('/files', express.static(path.resolve(__dirname, '..', 'upload')));
     this.app.use(
       (
         err: Error,
