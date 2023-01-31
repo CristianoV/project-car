@@ -23,9 +23,9 @@ export default function Header() {
         <Link href="/">
           Brasil
         </Link>
-        <Link href="/">
+        <Link href="/login">
           <RiAccountCircleLine />
-          Cadastre-se
+          Conecte-se
         </Link>
       </nav>
     </header>
