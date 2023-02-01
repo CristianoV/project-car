@@ -65,12 +65,14 @@ export default function Home({ cars }: HomeProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const { data } = await fetchFromApi.get('/cars');
+  const token = req.cookies.token || '';
 
   return {
     props: {
       cars: data,
+      token,
     },
   };
 };
