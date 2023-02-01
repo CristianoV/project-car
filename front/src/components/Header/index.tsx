@@ -2,8 +2,13 @@ import styles from './styles.module.scss';
 import Link from 'next/link';
 import { RiAccountCircleLine } from 'react-icons/ri';
 import { AiOutlineMenu } from 'react-icons/ai';
+import ButtonLogin from '../buttonLogin';
 
-export default function Header() {
+interface HeaderProps {
+  token: string | undefined;
+}
+
+export default function Header({ token }: HeaderProps) {
   return (
     <header className={styles.container}>
       <h1>Carros</h1>
@@ -14,10 +19,7 @@ export default function Header() {
           <Link href='/'>APP Kavak</Link>
           <Link href='/'>Sobre nós</Link>
           <Link href='/'>Brasil</Link>
-          <Link href='/login'>
-            <RiAccountCircleLine />
-            Conecte-se
-          </Link>
+          <ButtonLogin token={token} />
         </nav>
         <div className={styles.dropdown}>
           <li className='nav-item dropdown'>
