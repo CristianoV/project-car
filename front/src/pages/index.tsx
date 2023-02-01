@@ -45,8 +45,8 @@ export default function Home({ cars }: HomeProps) {
         </div>
       </main>
       <section className={styles.cars}>
-      {carApi.map((car) => {
-        return (
+        {carApi.map((car) => {
+          return (
             <div className={`card ${styles.carsImage}`} key={car.id}>
               <img src={car.foto} className='card-img-top' alt={car.name} />
               <div className='card-body'>
@@ -58,9 +58,10 @@ export default function Home({ cars }: HomeProps) {
                   Detalhes
                 </a>
               </div>
-          </div>
-        );
-      })}
+            </div>
+          );
+        })}
+      </section>
     </>
   );
 }
