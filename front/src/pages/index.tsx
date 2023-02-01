@@ -35,7 +35,13 @@ export default function Home({ cars }: HomeProps) {
             id=''
             placeholder='Busque por marca ou modelo'
           />
-          <button className="btn btn-secondary" type="button" id="button-addon2" >Pesquise</button>
+          <button
+            className='btn btn-secondary'
+            type='button'
+            id='button-addon2'
+          >
+            Pesquise
+          </button>
         </div>
       </main>
       <section className={styles.cars}>
