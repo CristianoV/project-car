@@ -4,17 +4,40 @@ import styles from './styles.module.scss';
 import Image from 'next/image';
 import loginImage from '../../../public/login-customer.jpg';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { fetchFromApi } from '../../lib/axios';
 
 export default function Login() {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log(user, password);
-    setPassword('');
-    setUser('');
+    try {
+      const { data } = await fetchFromApi.post('/login', {
+        name: user,
+        password: password,
+      });
+
+      if (data.token) {
+        await fetch('/api/login', {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        router.push('/');
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setPassword('');
+      setUser('');
+    }
   };
 
   return (
