@@ -1,0 +1,56 @@
+.images {
+  width: 10rem;
+
+  img {
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    object-position: bottom;
+  }
+}
+
+.imageContainer {
+  width: 50rem;
+  display: flex;
+
+  img {
+    width: 25rem;
+    height: 25rem;
+    object-fit: cover;
+    object-position: bottom;
+  }
+
+  div {
+    
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  input[type='text'] {
+    align-self: center;
+    border-radius: 10px;
+    width: 90%;
+    height: 35px;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  input[type='button'] {
+    width: 90%;
+    height: 35px;
+  }
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    gap: 5px;
+  }
+}
