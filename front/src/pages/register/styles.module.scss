@@ -6,6 +6,7 @@
   img {
     width: 60%;
     height: 100vh;
+    object-fit: cover;
   }
 
   article {
@@ -48,6 +49,32 @@
 
         &:hover {
           filter: brightness(0.9);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    img {
+      width: 100vw;
+      height: 10rem;
+      margin-bottom: 10%;
+    }
+    article {
+      width: 80%;
+      form {
+        input {
+          height: 50%;
+          margin: 2%;
+          padding: 0 1vw;
+        }
+        button {
+          height: 50%;
         }
       }
     }

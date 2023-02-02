@@ -1,10 +1,17 @@
 .container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  gap: 20px;
   width: 90%;
   height: 100vh;
   padding: 20px;
+  img {
+    width: 25rem;
+    height: 25rem;
+    border-radius: 10%;
+    object-fit: cover;
+    object-position: bottom;
+  }
   form {
     display: flex;
     flex-direction: column;
@@ -37,16 +44,32 @@
 
 @media screen and (max-width: 960px) {
   .container {
+    flex-direction: column;
+    align-items: center;
     width: auto;
     height: auto;
     form {
       display: flex;
       flex-direction: column;
       gap: 8px;
+      margin-bottom: 20%;
       label {
         display: flex;
         flex-direction: column;
       }
     }
+  }
+}
+
+.message {
+  position: fixed;
+  z-index: 100;
+  justify-self: center;
+  align-self: center;
+  &.visible {
+    animation: fadeIn 1s;
+  }
+  &.hidden {
+    animation: fadeOut 1s;
   }
 }
