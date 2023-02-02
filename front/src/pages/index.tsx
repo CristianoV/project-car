@@ -34,6 +34,7 @@ export default function Home({ cars }: HomeProps) {
         car.name.toLowerCase().includes(nameCar.toLowerCase())
       )
     : cars;
+
   return (
     <>
       <Head>
@@ -49,13 +50,6 @@ export default function Home({ cars }: HomeProps) {
             value={nameCar}
             onChange={handleFilter}
           />
-          <button
-            className='btn btn-secondary'
-            type='button'
-            id='button-addon2'
-          >
-            Pesquise
-          </button>
         </div>
       </main>
       <section className={styles.cars}>
@@ -82,7 +76,7 @@ export default function Home({ cars }: HomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const { data } = await fetchFromApi.get('/cars');
+  const { data } = (await fetchFromApi.get('/cars')) as { data: Car[] };
   const token = req.cookies.token || '';
 
   return {
