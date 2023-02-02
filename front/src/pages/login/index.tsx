@@ -72,8 +72,9 @@ export default function Login() {
             <button type='submit'>Entrar</button>
           </form>
           <h3>
-            Ainda não tem uma conta? <Link href='/register'>Registre-se</Link>
+            Ainda não tem uma conta?
           </h3>
+          <Link href='/register'>Registre-se</Link>
         </article>
       </section>
     </>
