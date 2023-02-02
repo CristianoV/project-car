@@ -8,7 +8,7 @@ export default function AdminFormAdd() {
     marca: '',
     value: '',
     modelo: '',
-    file: '',
+    file: {},
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -79,7 +79,11 @@ export default function AdminFormAdd() {
             type='file'
             name='image'
             id=''
-            onChange={(e) => setNewCar({ ...newCar, file: e.target.files[0] })}
+            onChange={(e) => {
+              if (e.target.files) {
+                setNewCar({ ...newCar, file: e.target.files[0] });
+              }
+            }}
           />
         </label>
         <button type='submit'>Adicionar</button>
