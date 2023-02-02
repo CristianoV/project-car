@@ -1,5 +1,4 @@
 import { GetServerSideProps } from 'next';
-import Link from 'next/link';
 import { fetchFromApi } from '../../lib/axios';
 
 interface User {
@@ -14,7 +13,6 @@ export default function Perfil({ user }: User) {
   return (
     <div>
       <h1>Bem vindo {user.name}</h1>
-      {user.nivel === 'admin' && <Link href='/admin'>Admin</Link>}
     </div>
   );
 }
