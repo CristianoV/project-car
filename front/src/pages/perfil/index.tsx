@@ -1,6 +1,5 @@
 import { GetServerSideProps } from 'next';
-import { useState } from 'react';
-import Admin from '../../components/admin';
+import Link from 'next/link';
 import { fetchFromApi } from '../../lib/axios';
 
 interface User {
@@ -12,23 +11,10 @@ interface User {
 }
 
 export default function Perfil({ user }: User) {
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    await fetch('/api/logout', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({}),
-    });
-  };
   return (
     <div>
-      <h1>Perfil</h1>
-      <p>Nome: {user.name}</p>
-      {user.nivel === 'admin' && <Admin />}
-      <button onClick={(e) => handleSubmit(e)}>Sair</button>
+      <h1>Bem vindo {user.name}</h1>
+      {user.nivel === 'admin' && <Link href='/admin'>Admin</Link>}
     </div>
   );
 }
