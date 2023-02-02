@@ -19,9 +19,20 @@ interface HomeProps {
 }
 
 export default function Home({ cars }: HomeProps) {
+  const [nameCar, setNameCar] = useState('');
   const [carApi, setCarApi] = useState<Car[]>(
     cars.sort((a, b) => a.value - b.value)
   );
+
+  const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNameCar(e.target.value);
+  };
+
+  const filteredCars = nameCar
+    ? cars.filter((car) =>
+        car.name.toLowerCase().includes(nameCar.toLowerCase())
+      )
+    : cars;
   return (
     <>
       <Head>
@@ -33,7 +44,9 @@ export default function Home({ cars }: HomeProps) {
             type='text'
             name=''
             id=''
-            placeholder='Busque por marca ou modelo'
+            placeholder='Busque por um carro'
+            value={nameCar}
+            onChange={handleFilter}
           />
           <button
             className='btn btn-secondary'
@@ -45,7 +58,7 @@ export default function Home({ cars }: HomeProps) {
         </div>
       </main>
       <section className={styles.cars}>
-        {carApi.map((car) => {
+        {filteredCars.map((car) => {
           return (
             <div className={`card ${styles.carsImage}`} key={car.id}>
               <img src={car.foto} className='card-img-top' alt={car.name} />
