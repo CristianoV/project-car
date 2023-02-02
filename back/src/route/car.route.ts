@@ -21,7 +21,7 @@ CarRoutes.post('/cars', upload.single('file'), (request: Request, response: Resp
   carController.createCar(request, response)
 );
 
-CarRoutes.put('/cars/:id', (request: Request, response: Response) =>
+CarRoutes.put('/cars/:id',upload.single('file'), (request: Request, response: Response) =>
   carController.updateCar(request, response)
 );
 
