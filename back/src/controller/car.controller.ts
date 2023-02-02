@@ -40,16 +40,25 @@ export default class CarController {
 
   public async updateCar(req: Request, res: Response) {
     const { id } = req.params;
-    const { name, marca, value, modelo, foto } = req.body;
 
+    const file = req.file;
+    const { name, marca, value, modelo } = req.body;
+
+    if (file) {
+      const car = await this.carService.updateCar(Number(id), {
+        name,
+        marca,
+        value,
+        modelo,
+        foto: process.env.DB_URL + file.filename,
+      });
+    }
     const car = await this.carService.updateCar(Number(id), {
       name,
       marca,
       value,
       modelo,
-      foto,
     });
-
     return res.status(202).json(car);
   }
 
