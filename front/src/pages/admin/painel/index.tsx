@@ -21,6 +21,10 @@ export default function AdminFormDel() {
   const [nameCar, setNameCar] = useState('');
   const [cars, setCars] = useState<Car[]>([]);
   const [popUp, setPopUp] = useState(false);
+  const priceFormat = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
 
   useEffect(() => {
     const getCars = async () => {
