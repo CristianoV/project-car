@@ -3,6 +3,7 @@ import CarModel from '../database/models/car';
 import CarService from '../service/cars.service';
 import CarController from '../controller/car.controller';
 import FileMiddleware from '../middleware/File.middleware';
+import AuthMiddleware from '../middleware/Auth.middleware';
 import upload from '../utils/picture';
 
 const CarRoutes: Router = Router();
@@ -19,6 +20,7 @@ CarRoutes.get('/cars/:id', (request: Request, response: Response) =>
 
 CarRoutes.post(
   '/cars',
+  AuthMiddleware.authentication,
   upload.single('file'),
   (request: Request, response: Response) =>
     carController.createCar(request, response)
@@ -26,6 +28,7 @@ CarRoutes.post(
 
 CarRoutes.put(
   '/cars/:id',
+  AuthMiddleware.authentication,
   upload.single('file'),
   FileMiddleware.deleteFile,
   (request: Request, response: Response) =>
@@ -34,6 +37,7 @@ CarRoutes.put(
 
 CarRoutes.delete(
   '/cars/:id',
+  AuthMiddleware.authentication,
   FileMiddleware.deleteFile,
   (request: Request, response: Response) =>
     carController.deleteCar(request, response)
