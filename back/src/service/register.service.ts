@@ -31,7 +31,7 @@ export default class RegisterService {
       throw new Error(customMessage[0].message);
     }
 
-    const { id: accountId } = await this.registerAccount('admin' as any);
+    const { id: accountId } = await this.registerAccount('user' as any);
 
     const encrypt = Bcrypt.encrypt(password);
 
