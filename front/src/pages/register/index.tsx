@@ -4,17 +4,38 @@ import styles from './styles.module.scss';
 import Image from 'next/image';
 import registerImage from '../../../public/register-customer.jpg';
 import Head from 'next/head';
+import { fetchFromApi } from '../../lib/axios';
+import { useRouter } from 'next/router';
 
 export default function Register() {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      const { data } = await fetchFromApi.post('/register', {
+        name: user,
+        password: password,
+      });
 
-    console.log(user, password);
-    setPassword('');
-    setUser('');
+      if (data.token) {
+        await fetch('/api/login', {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+        router.push('/');
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setPassword('');
+      setUser('');
+    }
   };
 
   return (
