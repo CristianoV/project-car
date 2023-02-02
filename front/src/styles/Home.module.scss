@@ -26,8 +26,15 @@
 
 .carsImage {
   width: 15rem;
-  display: flex;
-
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h5 {
+      text-align: center;
+      font-weight: 600;
+    }
+  }
   img {
     width: 100%;
     height: 10rem;
@@ -47,7 +54,16 @@
 @media screen and (max-width: 768px) {
   .carsImage {
     width: 10rem;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
+      h5 {
+        text-align: center;
+        font-weight: 600;
+      }
+    }
     img {
       width: 100%;
       height: 10rem;
