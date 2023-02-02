@@ -6,6 +6,7 @@ import loginImage from '../../../public/login-customer.jpg';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { fetchFromApi } from '../../lib/axios';
+import { GetServerSideProps } from 'next';
 
 export default function Login() {
   const [user, setUser] = useState('');
@@ -78,3 +79,22 @@ export default function Login() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const token = req.cookies.token || '';
+
+  if (token) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      token,
+    },
+  };
+};
