@@ -59,6 +59,11 @@ export default function AdminFormDel() {
             <img src={car.foto} className='card-img-top' alt={car.name} />
             <div className='card-body'>
               <h5 className='card-title'>{car.name}</h5>
+              <h5 className='card-title'>{car.marca}</h5>
+              <h5 className='card-title'>{car.modelo}</h5>
+              <h5 className='card-title'>
+                {priceFormat.format(car.value / 100)}
+              </h5>
               <button
                 className='btn btn-primary'
                 onClick={() => handleDelete(car.id)}
