@@ -59,8 +59,8 @@ module.exports = {
       },
       {
         id: 992,
-        name: "Marea",
-        marca: "Chevrolet",
+        name: "ford gt easy",
+        marca: "ford",
         value: 950000,
         modelo: "1998",
         foto: "http://localhost:3002/files/ford-gt-easy.jpg",
