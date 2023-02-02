@@ -60,7 +60,12 @@ export default function Home({ cars }: HomeProps) {
               <div className='card-body'>
                 <h5 className='card-title'>{car.name}</h5>
                 <p className='card-text'>
-                  {car.marca} • {car.modelo} •{' '}
+                  {car.marca}
+                </p>
+                <p className='card-text'>
+                  {car.modelo}
+                </p>
+                <p className='card-text'>
                   {priceFormat.format(car.value / 100)}
                 </p>
                 <a href='#' className='btn btn-primary'>
