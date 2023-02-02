@@ -24,6 +24,7 @@ const ImagePreview: React.FC<{ imageUrl: string }> = ({ imageUrl }) => (
 export default function AdminFormDel({ id, car }: ICarEdit) {
   const [form, setForm] = useState<Car>({ ...car });
   const [image, setImage] = useState<File | null>(null);
+  const [popUp, setPopUp] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,6 +36,7 @@ export default function AdminFormDel({ id, car }: ICarEdit) {
     };
 
     await fetchFromApi.put(`/cars/${id}`, { ...form, file: image }, headers);
+    handleAlert();
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,10 +44,24 @@ export default function AdminFormDel({ id, car }: ICarEdit) {
     setForm({ ...form, [name]: value });
   };
 
+  const handleAlert = () => {
+    setPopUp(true);
+    setTimeout(() => {
+      setPopUp(false);
+    }, 3000);
+  };
   return (
     <div className={styles.imageContainer}>
       <ImagePreview imageUrl={image ? URL.createObjectURL(image) : car.foto} />
       <form onSubmit={handleSubmit}>
+      {popUp && (
+        <div
+          className={`alert alert-success ${styles.message} ${styles.visible}`}
+          role='alert'
+        >
+          Editado com sucesso!
+        </div>
+      )}
         <div>
           <label htmlFor='name'>Nome:</label>
           <input
