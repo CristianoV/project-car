@@ -7,6 +7,10 @@ module.exports = {
       },
       {
         id: 998,
+        nivel: 'admin',
+      },
+      {
+        id: 997,
         nivel: 'user',
       },
     ], {});
