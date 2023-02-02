@@ -1,6 +1,8 @@
 import cookie from 'cookie';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default function logout(req, res) {
+
+export default function logout(_req: NextApiRequest, res: NextApiResponse) {
   res.setHeader(
     'Set-Cookie',
     cookie.serialize('token', '', {
