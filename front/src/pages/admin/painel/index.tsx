@@ -17,7 +17,11 @@ interface Car {
   foto: string;
 }
 
-export default function AdminFormDel() {
+interface IAminFormDel {
+  token: string;
+}
+
+export default function AdminFormDel({ token }: IAminFormDel) {
   const [nameCar, setNameCar] = useState('');
   const [cars, setCars] = useState<Car[]>([]);
   const [popUp, setPopUp] = useState(false);
@@ -35,7 +39,13 @@ export default function AdminFormDel() {
   }, []);
 
   const handleDelete = async (id: any) => {
-    await fetchFromApi.delete(`/cars/${String(id)}`);
+    const headers = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: token,
+      },
+    };
+    await fetchFromApi.delete(`/cars/${String(id)}`, headers);
     setCars(cars.filter((car) => car.id !== id));
     handleAlert();
   };
