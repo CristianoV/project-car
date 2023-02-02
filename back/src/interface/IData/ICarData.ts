@@ -13,10 +13,6 @@ export const carSchema = z.object({
     required_error: 'value is required',
     invalid_type_error: 'value must be a number',
   }),
-  // value: z.number({
-  //   required_error: 'value is required',
-  //   invalid_type_error: 'value must be a number',
-  // }),
   modelo: z.string({
     required_error: 'modelo is required',
     invalid_type_error: 'modelo must be a string',
@@ -24,7 +20,7 @@ export const carSchema = z.object({
   foto: z.string({
     required_error: 'foto is required',
     invalid_type_error: 'foto must be a string',
-  }),
+  }).optional(),
 });
 
 export type ICarData = z.infer<typeof carSchema>;
