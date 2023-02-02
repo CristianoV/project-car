@@ -4,13 +4,17 @@ import AdminFormAdd from '../../components/adminFormAdd';
 import { fetchFromApi } from '../../lib/axios';
 import styles from './styles.module.scss';
 
-export default function Admin() {
+interface AdminProps {
+  token: string;
+}
+
+export default function Admin({ token }: AdminProps) {
   return (
     <div className={styles.container}>
-      <AdminFormAdd />
+      <AdminFormAdd token={token} />
       <div>
         <h1>Filtros ADM</h1>
-        <Link href='/admin/painel'>Deletar</Link>
+        <Link href='/admin/painel'>Editar/Excluir</Link>
       </div>
     </div>
   );
@@ -18,6 +22,14 @@ export default function Admin() {
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const token = req.cookies.token || '';
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
   const { data } = await fetchFromApi.get('/verify', {
     headers: {
       Authorization: token,
