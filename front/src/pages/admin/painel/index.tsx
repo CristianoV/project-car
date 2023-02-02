@@ -20,7 +20,7 @@ interface Car {
 export default function AdminFormDel() {
   const [nameCar, setNameCar] = useState('');
   const [cars, setCars] = useState<Car[]>([]);
-  const route = useRouter();
+  const [popUp, setPopUp] = useState(false);
 
   useEffect(() => {
     const getCars = async () => {
@@ -33,6 +33,7 @@ export default function AdminFormDel() {
   const handleDelete = async (id: any) => {
     await fetchFromApi.delete(`/cars/${String(id)}`);
     setCars(cars.filter((car) => car.id !== id));
+    handleAlert();
   };
 
   const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +46,12 @@ export default function AdminFormDel() {
       )
     : cars;
 
+  const handleAlert = () => {
+    setPopUp(true);
+    setTimeout(() => {
+      setPopUp(false);
+    }, 3000);
+  };
   return (
     <div className={styles.container}>
       <input
@@ -53,6 +60,14 @@ export default function AdminFormDel() {
         value={nameCar}
         onChange={handleFilter}
       ></input>
+      {popUp && (
+        <div
+          className={`alert alert-success ${styles.message} ${styles.visible}`}
+          role='alert'
+        >
+          Deletado com sucesso!
+        </div>
+      )}
       <div>
         {filteredCars.map((car) => (
           <div className={`card ${styles.images}`} key={car.id}>
