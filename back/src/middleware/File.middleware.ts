@@ -14,17 +14,20 @@ class FileMiddleware {
 
     if (!car) {
       throw new Error('Car not found');
-    }
-    let parts = car.foto.split('files/');
-    let result = parts.slice(-1)[0];
-    fs.unlink(`upload/${result}`, (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-    });
+    } else if (req.file) {
+      let parts = car.foto.split('files/');
+      let result = parts.slice(-1)[0];
+      fs.unlink(`upload/${result}`, (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      });
 
-    next();
+      next();
+    } else {
+      next();
+    }
   }
 }
 
