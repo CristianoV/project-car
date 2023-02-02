@@ -30,7 +30,7 @@ CarRoutes.put(
   '/cars/:id',
   AuthMiddleware.authentication,
   upload.single('file'),
-  FileMiddleware.deleteFile,
+  FileMiddleware.deleteUpdateFile,
   (request: Request, response: Response) =>
     carController.updateCar(request, response)
 );
