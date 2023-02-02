@@ -2,7 +2,11 @@ import { useState } from 'react';
 import { fetchFromApi } from '../../lib/axios';
 import styles from './styles.module.scss';
 
-export default function AdminFormAdd() {
+interface AdminFormAddProps {
+  token: string;
+}
+
+export default function AdminFormAdd({ token }: AdminFormAddProps) {
   const [newCar, setNewCar] = useState({
     name: '',
     marca: '',
@@ -10,6 +14,7 @@ export default function AdminFormAdd() {
     modelo: '',
     file: {},
   });
+  const [popUp, setPopUp] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,6 +22,7 @@ export default function AdminFormAdd() {
     const headers = {
       headers: {
         'Content-Type': 'multipart/form-data',
+        Authorization: token,
       },
     };
 
@@ -26,8 +32,16 @@ export default function AdminFormAdd() {
       marca: '',
       value: '',
       modelo: '',
-      file: '',
+      file: {},
     });
+    handleAlert();
+  };
+
+  const handleAlert = () => {
+    setPopUp(true);
+    setTimeout(() => {
+      setPopUp(false);
+    }, 3000);
   };
   return (
     <div className={styles.container}>
@@ -36,6 +50,7 @@ export default function AdminFormAdd() {
         <label htmlFor=''>
           Nome:
           <input
+            required
             type='text'
             name='name'
             id=''
@@ -46,6 +61,7 @@ export default function AdminFormAdd() {
         <label htmlFor=''>
           Marca:
           <input
+            required
             type='text'
             name='marca'
             id=''
@@ -56,6 +72,7 @@ export default function AdminFormAdd() {
         <label htmlFor=''>
           Valor:
           <input
+            required
             type='number'
             name='value'
             id=''
@@ -66,6 +83,7 @@ export default function AdminFormAdd() {
         <label htmlFor=''>
           Modelo:
           <input
+            required
             type='text'
             name='modelo'
             id=''
@@ -76,6 +94,7 @@ export default function AdminFormAdd() {
         <label htmlFor=''>
           Imagem:
           <input
+            required
             type='file'
             name='image'
             id=''
@@ -86,6 +105,14 @@ export default function AdminFormAdd() {
             }}
           />
         </label>
+        {popUp && (
+          <div
+            className={`alert alert-success ${styles.message} ${styles.visible}`}
+            role='alert'
+          >
+            Novo Carro adicionado com sucesso!
+          </div>
+        )}
         <button type='submit'>Adicionar</button>
       </form>
     </div>
