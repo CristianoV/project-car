@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { useState } from 'react';
 import { fetchFromApi } from '../../../lib/axios';
-import styles from './styles.module.scss';
+import styles from './styles[id].module.scss';
 
 interface Car {
   id: string;
@@ -15,13 +15,14 @@ interface Car {
 interface ICarEdit {
   id: string;
   car: Car;
+  token: string;
 }
 
 const ImagePreview: React.FC<{ imageUrl: string }> = ({ imageUrl }) => (
   <img src={imageUrl} className='card-img-top' alt='Car' />
 );
 
-export default function AdminFormDel({ id, car }: ICarEdit) {
+export default function AdminFormDel({ id, car, token }: ICarEdit) {
   const [form, setForm] = useState<Car>({ ...car });
   const [image, setImage] = useState<File | null>(null);
   const [popUp, setPopUp] = useState(false);
@@ -32,9 +33,9 @@ export default function AdminFormDel({ id, car }: ICarEdit) {
     const headers = {
       headers: {
         'Content-Type': 'multipart/form-data',
+        Authorization: token,
       },
     };
-
     await fetchFromApi.put(`/cars/${id}`, { ...form, file: image }, headers);
     handleAlert();
   };
@@ -51,7 +52,7 @@ export default function AdminFormDel({ id, car }: ICarEdit) {
     }, 3000);
   };
   return (
-    <div className={styles.imageContainer}>
+    <div className={styles.container}>
       <ImagePreview imageUrl={image ? URL.createObjectURL(image) : car.foto} />
       <form onSubmit={handleSubmit}>
       {popUp && (
