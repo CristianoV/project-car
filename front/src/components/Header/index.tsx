@@ -49,10 +49,7 @@ export default function Header({ token }: HeaderProps) {
                 <Link href='/'>Brasil</Link>
               </li>
               <li>
-                <Link href='/login'>
-                  <RiAccountCircleLine />
-                  Conecte-se
-                </Link>
+                <ButtonLogin token={token} />
               </li>
             </ul>
           </li>
