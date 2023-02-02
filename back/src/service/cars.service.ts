@@ -7,7 +7,11 @@ export default class CarsService {
   public async getCars() {
     const cars = await this.model.findAll({
       raw: true,
-    });
+      order: [
+        ['value', 'ASC'],
+        ['name', 'ASC'],
+    ],
+    },);
 
     return cars;
   }
