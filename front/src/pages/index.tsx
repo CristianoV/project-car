@@ -20,9 +20,10 @@ interface HomeProps {
 
 export default function Home({ cars }: HomeProps) {
   const [nameCar, setNameCar] = useState('');
-  const [carApi, setCarApi] = useState<Car[]>(
-    cars.sort((a, b) => a.value - b.value)
-  );
+  const priceFormat = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
 
   const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNameCar(e.target.value);
@@ -65,7 +66,8 @@ export default function Home({ cars }: HomeProps) {
               <div className='card-body'>
                 <h5 className='card-title'>{car.name}</h5>
                 <p className='card-text'>
-                  {car.marca} • {car.modelo} • R$ {car.value}
+                  {car.marca} • {car.modelo} •{' '}
+                  {priceFormat.format(car.value / 100)}
                 </p>
                 <a href='#' className='btn btn-primary'>
                   Detalhes
