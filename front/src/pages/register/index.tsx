@@ -69,8 +69,9 @@ export default function Register() {
             <button type='submit'>Entrar</button>
           </form>
           <h3>
-            Já tem uma conta cadastrada? <Link href='/login'>Conecte-se</Link>
+            Já tem uma conta cadastrada?
           </h3>
+          <Link href='/login'>Conecte-se</Link>
         </article>
       </section>
     </>
