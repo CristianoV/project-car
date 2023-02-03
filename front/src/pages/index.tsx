@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import styles from '../styles/Home.module.scss';
 import { fetchFromApi } from '../lib/axios';
-import Image from 'next/image';
 import { useState } from 'react';
 
 interface Car {
@@ -59,12 +58,8 @@ export default function Home({ cars }: HomeProps) {
               <img src={car.foto} className='card-img-top' alt={car.name} />
               <div className='card-body'>
                 <h5 className='card-title'>{car.name}</h5>
-                <p className='card-text'>
-                  {car.marca}
-                </p>
-                <p className='card-text'>
-                  {car.modelo}
-                </p>
+                <p className='card-text'>{car.marca}</p>
+                <p className='card-text'>{car.modelo}</p>
                 <p className='card-text'>
                   {priceFormat.format(car.value / 100)}
                 </p>
@@ -81,13 +76,21 @@ export default function Home({ cars }: HomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const { data } = (await fetchFromApi.get('/cars')) as { data: Car[] };
-  const token = req.cookies.token || '';
+  try {
+    const { data } = await fetchFromApi.get('/cars');
+    const token = req.cookies.token || '';
 
-  return {
-    props: {
-      cars: data,
-      token,
-    },
-  };
+    return {
+      props: {
+        cars: data || [],
+        token,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        cars: [],
+      },
+    };
+  }
 };
