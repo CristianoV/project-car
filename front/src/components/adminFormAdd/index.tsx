@@ -15,29 +15,41 @@ export default function AdminFormAdd({ token }: AdminFormAddProps) {
     file: {},
   });
   const [popUp, setPopUp] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    const headers = {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: token,
-      },
-    };
+      const headers = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: token,
+        },
+      };
 
-    await fetchFromApi.post('/cars', newCar, headers);
-    setNewCar({
-      name: '',
-      marca: '',
-      value: '',
-      modelo: '',
-      file: {},
-    });
-    handleAlert();
+      await fetchFromApi.post('/cars', newCar, headers);
+      setNewCar({
+        name: '',
+        marca: '',
+        value: '',
+        modelo: '',
+        file: {},
+      });
+      handleAlertSuccess();
+    } catch (error) {
+      handleAlertError();
+    }
   };
 
-  const handleAlert = () => {
+  const handleAlertError = () => {
+    setError(true);
+    setTimeout(() => {
+      setPopUp(false);
+    }, 3000);
+  };
+
+  const handleAlertSuccess = () => {
     setPopUp(true);
     setTimeout(() => {
       setPopUp(false);
@@ -105,6 +117,14 @@ export default function AdminFormAdd({ token }: AdminFormAddProps) {
             }}
           />
         </label>
+        {error && (
+          <div
+            className={`alert alert-danger ${styles.message} ${styles.visible}`}
+            role='alert'
+          >
+            Erro no servidor!
+          </div>
+        )}
         {popUp && (
           <div
             className={`alert alert-success ${styles.message} ${styles.visible}`}
