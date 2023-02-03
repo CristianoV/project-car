@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next';
 import { useState } from 'react';
 import { fetchFromApi } from '../../../lib/axios';
 import styles from './styles[id].module.scss';
+import Image from 'next/image';
 
 interface Car {
   id: string;
@@ -19,7 +20,13 @@ interface ICarEdit {
 }
 
 const ImagePreview: React.FC<{ imageUrl: string }> = ({ imageUrl }) => (
-  <img src={imageUrl} className='card-img-top' alt='Car' />
+  <Image
+    src={imageUrl}
+    width={200}
+    className='card-img-top'
+    height={200}
+    alt='Foto do carro editado'
+  />
 );
 
 export default function AdminFormDel({ id, car, token }: ICarEdit) {

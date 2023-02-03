@@ -56,7 +56,7 @@ export default function Home({ cars }: HomeProps) {
         {filteredCars.map((car) => {
           return (
             <div className={`card ${styles.carsImage}`} key={car.id}>
-              <Image src={`https://${car.foto}`} width={200} height={200} alt={car.name} />
+              <Image src={car.foto} width={200} height={200} alt={car.name} />
               <div className='card-body'>
                 <h5 className='card-title'>{car.name}</h5>
                 <p className='card-text'>{car.marca}</p>
