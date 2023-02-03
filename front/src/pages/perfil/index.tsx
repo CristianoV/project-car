@@ -20,34 +20,43 @@ export default function Perfil({ user }: User) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const token = req.cookies.token || '';
-  if (!token) {
+  try {
+    const token = req.cookies.token || '';
+    if (!token) {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      };
+    }
+    const { data } = await fetchFromApi.get('/verify', {
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    if (data.nivel === 'admin') {
+      return {
+        redirect: {
+          destination: '/admin',
+          permanent: false,
+        },
+      };
+    }
+
+    return {
+      props: {
+        token,
+        user: data,
+      },
+    };
+  } catch (error) {
     return {
       redirect: {
-        destination: '/login',
+        destination: '/',
         permanent: false,
       },
     };
   }
-  const { data } = await fetchFromApi.get('/verify', {
-    headers: {
-      Authorization: token,
-    },
-  });
-
-  if (data.nivel === 'admin') {
-    return {
-      redirect: {
-        destination: '/admin',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      token,
-      user: data,
-    },
-  };
 };
