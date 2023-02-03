@@ -8,6 +8,7 @@ import { app } from '../app';
 
 import Verify from '../database/models/account';
 import { afterEach } from 'mocha';
+import JwtSecret from '../utils/JwtService';
 
 chai.use(chaiHttp);
 
@@ -17,6 +18,7 @@ describe('Testando rota de servicy', () => {
       Sinon.restore();
     });
     it('Testando enviando authorization correta', async () => {
+      Sinon.stub(JwtSecret, 'verify').resolves({ id: 999 });
       Sinon.stub(Verify, 'findOne').resolves(USER as unknown as Verify);
       const response = await chai
         .request(app)
