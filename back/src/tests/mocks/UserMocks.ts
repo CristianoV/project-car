@@ -5,6 +5,11 @@ export const USER = {
   accountId: 1,
 };
 
+export const USER_ACCOUNT = {
+  id: 1,
+  level: 'user',
+};
+
 export const LOGIN = {
   name: 'user',
   password: 'Abacaxi123',
