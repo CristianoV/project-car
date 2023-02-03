@@ -5,6 +5,12 @@
   width: 90%;
   height: 100vh;
   padding: 20px;
+  a {
+    color: #000;
+    &:hover {
+      color: #3374db;
+    }
+  }
   img {
     width: 25rem;
     height: 25rem;

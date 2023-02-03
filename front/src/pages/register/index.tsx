@@ -6,6 +6,9 @@ import registerImage from '../../../public/register-customer.jpg';
 import Head from 'next/head';
 import { fetchFromApi } from '../../lib/axios';
 import { useRouter } from 'next/router';
+import ValidateUsername from '../../components/ValidateUsername';
+import ValidatePassword from '../../components/ValidatePassword';
+
 
 export default function Register() {
   const [user, setUser] = useState('');
@@ -58,14 +61,18 @@ export default function Register() {
               type='text'
               placeholder='Usuario'
               value={user}
+              required
               onChange={(e) => setUser(e.target.value)}
             />
+            <ValidateUsername username={user} />
             <input
               type='password'
               placeholder='Senha'
               value={password}
+              required
               onChange={(e) => setPassword(e.target.value)}
             />
+            <ValidatePassword password={password} />
             <button type='submit'>Entrar</button>
           </form>
           <h3>
