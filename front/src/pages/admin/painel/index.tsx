@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { fetchFromApi } from '../../../lib/axios';
 import styles from './styles.module.scss';
@@ -25,6 +23,7 @@ export default function AdminFormDel({ token }: IAminFormDel) {
   const [nameCar, setNameCar] = useState('');
   const [cars, setCars] = useState<Car[]>([]);
   const [popUp, setPopUp] = useState(false);
+  const [error, setError] = useState(false);
   const priceFormat = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
@@ -32,22 +31,31 @@ export default function AdminFormDel({ token }: IAminFormDel) {
 
   useEffect(() => {
     const getCars = async () => {
-      const { data } = await fetchFromApi.get('/cars');
-      setCars(data.sort((a: Car, b: Car) => a.name.localeCompare(b.name)));
+      try {
+        const { data } = await fetchFromApi.get('/cars');
+        setCars(data.sort((a: Car, b: Car) => a.name.localeCompare(b.name)));
+      } catch (error) {
+        console.log(error);
+        handleAlertError();
+      }
     };
     getCars();
   }, []);
 
   const handleDelete = async (id: any) => {
-    const headers = {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: token,
-      },
-    };
-    await fetchFromApi.delete(`/cars/${String(id)}`, headers);
-    setCars(cars.filter((car) => car.id !== id));
-    handleAlert();
+    try {
+      const headers = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: token,
+        },
+      };
+      await fetchFromApi.delete(`/cars/${String(id)}`, headers);
+      setCars(cars.filter((car) => car.id !== id));
+      handleAlertSuccess();
+    } catch (error) {
+      handleAlertError();
+    }
   };
 
   const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +68,14 @@ export default function AdminFormDel({ token }: IAminFormDel) {
       )
     : cars;
 
-  const handleAlert = () => {
+  const handleAlertError = () => {
+    setError(true);
+    setTimeout(() => {
+      setPopUp(false);
+    }, 3000);
+  };
+
+  const handleAlertSuccess = () => {
     setPopUp(true);
     setTimeout(() => {
       setPopUp(false);
@@ -74,6 +89,14 @@ export default function AdminFormDel({ token }: IAminFormDel) {
         value={nameCar}
         onChange={handleFilter}
       ></input>
+      {error && (
+        <div
+          className={`alert alert-danger ${styles.message} ${styles.visible}`}
+          role='alert'
+        >
+          Erro no servidor!
+        </div>
+      )}
       {popUp && (
         <div
           className={`alert alert-success ${styles.message} ${styles.visible}`}
@@ -111,22 +134,38 @@ export default function AdminFormDel({ token }: IAminFormDel) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const token = req.cookies.token || '';
-  if (!token) {
+  try {
+    const token = req.cookies.token || '';
+    if (!token) {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      };
+    }
+    const { data } = await fetchFromApi.get('/verify', {
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    if (data.nivel !== 'admin') {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+
     return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
+      props: {
+        token,
+        user: data,
       },
     };
-  }
-  const { data } = await fetchFromApi.get('/verify', {
-    headers: {
-      Authorization: token,
-    },
-  });
-
-  if (data.nivel !== 'admin') {
+  } catch (error) {
     return {
       redirect: {
         destination: '/',
@@ -134,11 +173,4 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       },
     };
   }
-
-  return {
-    props: {
-      token,
-      user: data,
-    },
-  };
 };

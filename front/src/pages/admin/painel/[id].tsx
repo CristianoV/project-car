@@ -26,18 +26,23 @@ export default function AdminFormDel({ id, car, token }: ICarEdit) {
   const [form, setForm] = useState<Car>({ ...car });
   const [image, setImage] = useState<File | null>(null);
   const [popUp, setPopUp] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    try {
+      event.preventDefault();
 
-    const headers = {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: token,
-      },
-    };
-    await fetchFromApi.put(`/cars/${id}`, { ...form, file: image }, headers);
-    handleAlert();
+      const headers = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: token,
+        },
+      };
+      await fetchFromApi.put(`/cars/${id}`, { ...form, file: image }, headers);
+      handleAlertSuccess();
+    } catch (error) {
+      handleAlertError();
+    }
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +50,14 @@ export default function AdminFormDel({ id, car, token }: ICarEdit) {
     setForm({ ...form, [name]: value });
   };
 
-  const handleAlert = () => {
+  const handleAlertError = () => {
+    setError(true);
+    setTimeout(() => {
+      setPopUp(false);
+    }, 3000);
+  };
+
+  const handleAlertSuccess = () => {
     setPopUp(true);
     setTimeout(() => {
       setPopUp(false);
@@ -55,14 +67,22 @@ export default function AdminFormDel({ id, car, token }: ICarEdit) {
     <div className={styles.container}>
       <ImagePreview imageUrl={image ? URL.createObjectURL(image) : car.foto} />
       <form onSubmit={handleSubmit}>
-      {popUp && (
-        <div
-          className={`alert alert-success ${styles.message} ${styles.visible}`}
-          role='alert'
-        >
-          Editado com sucesso!
-        </div>
-      )}
+        {error && (
+          <div
+            className={`alert alert-danger ${styles.message} ${styles.visible}`}
+            role='alert'
+          >
+            Erro no servidor!
+          </div>
+        )}
+        {popUp && (
+          <div
+            className={`alert alert-success ${styles.message} ${styles.visible}`}
+            role='alert'
+          >
+            Editado com sucesso!
+          </div>
+        )}
         <div>
           <label htmlFor='name'>Nome:</label>
           <input
@@ -125,22 +145,41 @@ export const getServerSideProps: GetServerSideProps = async ({
   params,
   req,
 }) => {
-  const token = req.cookies.token || '';
-  if (!token) {
+  try {
+    const token = req.cookies.token || '';
+    if (!token) {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      };
+    }
+    const { data: verifyToken } = await fetchFromApi.get('/verify', {
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    if (verifyToken.nivel !== 'admin') {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+    const { id } = params as unknown as params;
+    const { data } = await fetchFromApi.get(`/cars/${String(id)}`);
+
     return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
+      props: {
+        id,
+        car: data,
+        token,
       },
     };
-  }
-  const { data: verifyToken } = await fetchFromApi.get('/verify', {
-    headers: {
-      Authorization: token,
-    },
-  });
-
-  if (verifyToken.nivel !== 'admin') {
+  } catch (error) {
     return {
       redirect: {
         destination: '/',
@@ -148,14 +187,4 @@ export const getServerSideProps: GetServerSideProps = async ({
       },
     };
   }
-  const { id } = params as unknown as params;
-  const { data } = await fetchFromApi.get(`/cars/${String(id)}`);
-
-  return {
-    props: {
-      id,
-      car: data,
-      token,
-    },
-  };
 };
