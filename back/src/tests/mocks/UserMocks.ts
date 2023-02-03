@@ -2,8 +2,8 @@ export const USER = {
   id: 1,
   name: 'user',
   password: '$2a$10$0ec80axjF54kPvZW5KRmSuQjCGK8P7vqJdoTY7KmUJ8NRzcX2v7pS',
-  accountId: 1
-}
+  accountId: 1,
+};
 
 export const LOGIN = {
   name: 'user',
@@ -34,4 +34,3 @@ export const WRONG_ALPHANUMERIC_PASSWORD = {
   name: 'user',
   password: 'senha_sem_validacao',
 };
-
