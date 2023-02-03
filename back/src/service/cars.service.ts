@@ -1,5 +1,6 @@
 import Car from '../database/models/car';
 import { ICarData, carSchema } from '../interface/IData/ICarData';
+import { ICarsService } from '../interface/IService/ICarsService';
 
 export default class CarsService {
   constructor(private model: typeof Car) {}
