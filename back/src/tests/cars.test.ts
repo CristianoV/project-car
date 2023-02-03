@@ -20,7 +20,7 @@ describe('Testando rota cars', () => {
     it('Testando rota de requisição de carros', async () => {
       Sinon.stub(Cars, 'findAll').resolves(carsMock as unknown as Cars[]);
       const response = await chai.request(app).get('/cars').send();
-      chai.expect(response.status).to.equal(202);
+      chai.expect(response.status).to.equal(200);
       chai.expect(response.body).to.be.an('array');
       chai.expect(response.body).to.deep.equal(carsMock);
     });
@@ -28,7 +28,7 @@ describe('Testando rota cars', () => {
       Sinon.stub(Cars, 'findOne').resolves(carsMock[0] as unknown as Cars);
       const response = await chai.request(app).get('/cars/993').send();
 
-      chai.expect(response.status).to.equal(202);
+      chai.expect(response.status).to.equal(200);
       chai.expect(response.body).to.be.an('object');
       chai.expect(response.body).to.deep.equal(carsMock[0]);
     });

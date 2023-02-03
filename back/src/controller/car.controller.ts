@@ -7,7 +7,7 @@ export default class CarController {
   public async getCar(req: Request, res: Response) {
     const user = await this.carService.getCars();
 
-    return res.status(202).json(user);
+    return res.status(200).json(user);
   }
 
   public async getCarById(req: Request, res: Response) {
@@ -15,7 +15,7 @@ export default class CarController {
 
     const car = await this.carService.getCarById(Number(id));
 
-    return res.status(202).json(car);
+    return res.status(200).json(car);
   }
 
   public async createCar(req: Request, res: Response) {
@@ -35,7 +35,7 @@ export default class CarController {
       foto: process.env.DB_URL + file.filename,
     });
 
-    return res.status(202).json(car);
+    return res.status(201).json(car);
   }
 
   public async updateCar(req: Request, res: Response) {
