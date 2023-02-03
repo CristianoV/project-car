@@ -4,6 +4,7 @@ import {
   SMALL_PASSWORD,
   WRONG_ALPHANUMERIC_PASSWORD,
   USER,
+  USER_ACCOUNT,
 } from './mocks/UserMocks';
 import * as chai from 'chai';
 // @ts-ignore
@@ -13,6 +14,7 @@ import * as Sinon from 'sinon';
 import { app } from '../app';
 
 import User from '../database/models/user';
+import Account from '../database/models/account';
 import { afterEach } from 'mocha';
 
 chai.use(chaiHttp);
@@ -25,6 +27,7 @@ describe('Testando rota de Register', () => {
     it('Testando cadastro com tudo correto', async () => {
       Sinon.stub(User, 'findOne').resolves();
       Sinon.stub(User, 'create').resolves(USER as unknown as User);
+      Sinon.stub(Account, 'create').resolves(USER_ACCOUNT as unknown as Account);
       const response = await chai.request(app).post('/register').send(USER);
 
       chai.expect(response.status).to.be.equal(201);
