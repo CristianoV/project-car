@@ -51,6 +51,7 @@ export default function Login() {
       <section className={styles.container}>
         <Image
           src={loginImage}
+          quality={50}
           alt='Login'
           placeholder='blur'
           blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='

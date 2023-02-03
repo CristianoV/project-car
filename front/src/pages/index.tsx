@@ -58,6 +58,8 @@ export default function Home({ cars }: HomeProps) {
             <div className={`card ${styles.carsImage}`} key={car.id}>
               <Image
                 src={car.foto}
+                width={200}
+                height={200}
                 className='card-img-top'
                 alt={car.name}
                 placeholder='blur'

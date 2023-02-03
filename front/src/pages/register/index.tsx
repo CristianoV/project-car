@@ -49,6 +49,7 @@ export default function Register() {
       <section className={styles.container}>
         <Image
           src={registerImage}
+          quality={100}
           alt='Login'
           placeholder='blur'
           blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='

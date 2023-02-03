@@ -17,6 +17,8 @@ export default function Perfil({ user }: User) {
       <h1>Bem vindo {user.name}</h1>
       <Image
         src={`${process.env.NEXT_PUBLIC_API_URL}files/avatar.png`}
+        width={200}
+        height={200}
         alt={user.name}
         placeholder='blur'
         blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='

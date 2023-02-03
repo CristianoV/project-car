@@ -111,6 +111,8 @@ export default function AdminFormDel({ token }: IAminFormDel) {
           <div className={`card ${styles.images}`} key={car.id}>
             <Image
               src={car.foto}
+              width={200}
+              height={200}
               className='card-img-top'
               alt={car.name}
               placeholder='blur'

@@ -23,6 +23,8 @@ interface ICarEdit {
 const ImagePreview: React.FC<{ imageUrl: string }> = ({ imageUrl }) => (
   <Image
     src={imageUrl}
+    width={200}
+    height={200}
     className='card-img-top'
     alt='Car'
     placeholder='blur'
