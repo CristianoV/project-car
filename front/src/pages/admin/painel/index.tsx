@@ -115,6 +115,8 @@ export default function AdminFormDel({ token }: IAminFormDel) {
               className='card-img-top'
               height={200}
               alt={car.name}
+              placeholder='blur'
+              blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='
             />
             <div className='card-body'>
               <h5 className='card-title'>{car.name}</h5>

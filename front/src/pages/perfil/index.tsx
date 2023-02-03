@@ -19,6 +19,8 @@ export default function Perfil({ user }: User) {
         width={200}
         height={200}
         alt='Avatar'
+        placeholder='blur'
+        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='
       />
     </div>
   );

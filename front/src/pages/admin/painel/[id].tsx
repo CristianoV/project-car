@@ -26,6 +26,8 @@ const ImagePreview: React.FC<{ imageUrl: string }> = ({ imageUrl }) => (
     className='card-img-top'
     height={200}
     alt='Foto do carro editado'
+    placeholder='blur'
+    blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='
   />
 );
 
