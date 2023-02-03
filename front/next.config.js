@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['project-car-production.up.railway.app'],
+    domains: ['localhost'],
   },
 }
 
