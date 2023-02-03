@@ -1,11 +1,10 @@
-import { IToken } from '../IToken';
-import { IError } from '../IError';
-import { ILoginData } from '../IData/ILoginData';
+import Car from '../../database/models/car';
+import { ICarData } from '../IData/ICarData';
 
 export interface ICarsService {
-  getCars({ password, name }: ILoginData): Promise<IToken | IError>;
-  getCarById({ password, name }: ILoginData): Promise<IToken | IError>;
-  createCar({ password, name }: ILoginData): Promise<IToken | IError>;
-  updateCar({ password, name }: ILoginData): Promise<IToken | IError>;
-  deleteCar({ password, name }: ILoginData): Promise<IToken | IError>;
+  getCars(): Promise<Car[]>;
+  getCarById(id: number): Promise<Car>;
+  createCar(car: ICarData): Promise<void>;
+  updateCar(id: number, car: ICarData): Promise<void>;
+  deleteCar(id: number): Promise<void>;
 }

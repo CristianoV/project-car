@@ -2,7 +2,7 @@ import Car from '../database/models/car';
 import { ICarData, carSchema } from '../interface/IData/ICarData';
 import { ICarsService } from '../interface/IService/ICarsService';
 
-export default class CarsService {
+export default class CarsService implements ICarsService{
   constructor(private model: typeof Car) {}
 
   public async getCars() {
@@ -42,9 +42,7 @@ export default class CarsService {
       throw new Error(customMessage[0].message);
     }
 
-    const createdCar = await this.model.create(car);
-
-    return createdCar;
+    await this.model.create(car);
   }
 
   public async updateCar(id: number, car: ICarData) {
@@ -57,13 +55,11 @@ export default class CarsService {
       throw new Error(customMessage[0].message);
     }
 
-    const updatedCar = await this.model.update(car, {
+    await this.model.update(car, {
       where: {
         id,
       },
     });
-
-    return updatedCar;
   }
 
   public async deleteCar(id: number) {
@@ -76,7 +72,5 @@ export default class CarsService {
     if (!deletedCar) {
       throw new Error('Car not found');
     }
-
-    return deletedCar;
   }
 }
