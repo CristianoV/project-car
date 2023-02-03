@@ -16,6 +16,7 @@ class App {
   private config(): void {
     this.app.use(cors());
     this.app.use(express.json());
+    this.app.get('/', (req, res) => res.json({ status: 'ok' }));
     this.app.use('/', routes);
     this.app.use('/files', express.static(path.resolve(__dirname, '..', 'upload')));
     this.app.use(
