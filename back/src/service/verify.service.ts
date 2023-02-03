@@ -1,10 +1,14 @@
 import JwtSecret from '../utils/JwtService';
 import Account from '../database/models/account';
+import { IVerifyService } from '../interface/IService/IVerifyService';
+import { IVerifyData } from '../interface/IData/IVerifyData';
 
-export default class VerifyService {
+export default class VerifyService implements IVerifyService {
   constructor(private model: typeof Account) {}
 
-  public async verifyUserService(authorization: string): Promise<any> {
+  public async verifyUserService(
+    authorization: string
+  ): Promise<IVerifyData | null> {
     const { id: decodedId } = JwtSecret.verify(authorization);
 
     const verifyUser = await this.model.findOne({
