@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { fetchFromApi } from '../../lib/axios';
+import styles from './styles.module.scss';
 
 interface User {
   user: {
@@ -11,8 +12,9 @@ interface User {
 
 export default function Perfil({ user }: User) {
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Bem vindo {user.name}</h1>
+      <img src={`${process.env.NEXT_PUBLIC_API_URL}/files/avatar.png`} alt='' />
     </div>
   );
 }
