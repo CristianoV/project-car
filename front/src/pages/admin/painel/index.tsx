@@ -42,7 +42,7 @@ export default function AdminFormDel({ token }: IAminFormDel) {
     getCars();
   }, []);
 
-  const handleDelete = async (id: any) => {
+  const handleDelete = async (id: string) => {
     try {
       const headers = {
         headers: {
@@ -50,7 +50,7 @@ export default function AdminFormDel({ token }: IAminFormDel) {
           Authorization: token,
         },
       };
-      await fetchFromApi.delete(`/cars/${String(id)}`, headers);
+      await fetchFromApi.delete(`/cars/${id}`, headers);
       setCars(cars.filter((car) => car.id !== id));
       handleAlertSuccess();
     } catch (error) {
