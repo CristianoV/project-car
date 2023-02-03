@@ -6,7 +6,7 @@ import {
   SMALL_USERNAME,
   SMALL_PASSWORD,
   WRONG_ALPHANUMERIC_PASSWORD,
-} from './mocks/LoginMocks';
+} from './mocks/UserMocks';
 import * as chai from 'chai';
 // @ts-ignore
 import chaiHttp = require('chai-http');
