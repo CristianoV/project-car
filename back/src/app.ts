@@ -18,7 +18,10 @@ class App {
     this.app.use(express.json());
     this.app.get('/', (req, res) => res.json({ status: 'ok' }));
     this.app.use('/', routes);
-    this.app.use('/files', express.static(path.resolve(__dirname, '..', 'upload')));
+    this.app.use(
+      '/files',
+      express.static(path.resolve(__dirname, '..', 'upload'))
+    );
     this.app.use(
       (
         err: Error,
