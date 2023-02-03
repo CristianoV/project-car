@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next';
 import { useState } from 'react';
 import { fetchFromApi } from '../../../lib/axios';
 import styles from './styles[id].module.scss';
+import Link from 'next/link';
 
 interface Car {
   id: string;
@@ -65,6 +66,7 @@ export default function AdminFormDel({ id, car, token }: ICarEdit) {
   };
   return (
     <div className={styles.container}>
+      <Link href='/admin/painel'>Continuar editando</Link>
       <ImagePreview imageUrl={image ? URL.createObjectURL(image) : car.foto} />
       <form onSubmit={handleSubmit}>
         {error && (
