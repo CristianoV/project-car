@@ -1,6 +1,5 @@
 import styles from './styles.module.scss';
 import Link from 'next/link';
-import { RiAccountCircleLine } from 'react-icons/ri';
 import { AiOutlineMenu } from 'react-icons/ai';
 import ButtonLogin from '../buttonLogin';
 
