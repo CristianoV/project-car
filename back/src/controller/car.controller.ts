@@ -70,10 +70,3 @@ export default class CarController {
     return res.status(202).json(car);
   }
 }
-// {
-//   "name": "Sandero",
-//   "marca": "Chevrollet",
-//   "value": 8000,
-//   "modelo": "sr",
-//   "foto": "asdasdasdasd.png"
-// }
