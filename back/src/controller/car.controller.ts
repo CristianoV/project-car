@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import CarService from '../service/cars.service';
+import { ICarController } from '../interface/IController/ICarController';
 
-export default class CarController {
+export default class CarController  implements ICarController{
   constructor(private carService: CarService) {}
 
   public async getCar(req: Request, res: Response) {

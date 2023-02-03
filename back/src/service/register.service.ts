@@ -2,15 +2,19 @@ import Account from '../database/models/account';
 import User from '../database/models/user';
 import Bcrypt from '../utils/BcriptService';
 import JwtSecret from '../utils/JwtService';
-
 import { RegisterData, RegisterSchema } from '../interface/IData/IRegisterData';
+import { IRegisterService } from '../interface/IService/IRegisterService';
 
-export default class RegisterService {
+export default class RegisterService implements IRegisterService {
   constructor(private model: typeof User) {}
 
-  public async registerAccount(nivel: string) {
+  public async registerAccount({
+    level,
+  }: {
+    level: 'user' | 'admin';
+  }): Promise<Account> {
     const newAccount = await Account.create({
-      nivel,
+      level,
     });
 
     return newAccount;

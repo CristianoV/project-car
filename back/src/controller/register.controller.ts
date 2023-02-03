@@ -1,7 +1,8 @@
-import { Request, Response } from "express";
-import UserService from "../service/register.service";
+import { Request, Response } from 'express';
+import UserService from '../service/register.service';
+import { IRegisterController } from '../interface/IController/IRegisterController';
 
-export default class RegisterController {
+export default class RegisterController implements IRegisterController {
   constructor(private registerService: UserService) {}
 
   public async register(req: Request, res: Response) {

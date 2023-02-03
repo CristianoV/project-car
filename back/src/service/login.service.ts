@@ -2,8 +2,9 @@ import JwtSecret from '../utils/JwtService';
 import User from '../database/models/user';
 import Bcrypt from '../utils/BcriptService';
 import { ILoginData, loginSchema } from '../interface/IData/ILoginData';
+import { ILoginService } from '../interface/IService/ILoginService';
 
-export default class LoginService {
+export default class LoginService implements ILoginService {
   constructor(private model: typeof User) {}
 
   public async login({ password, name }: ILoginData) {
