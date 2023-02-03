@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 interface User {
   user: {
     id: string;
-    nivel: string;
+    level: string;
     name: string;
   };
 }
@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       },
     });
 
-    if (data.nivel === 'admin') {
+    if (data.level === 'admin') {
       return {
         redirect: {
           destination: '/admin',

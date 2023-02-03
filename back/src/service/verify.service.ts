@@ -24,6 +24,6 @@ export default class VerifyService {
     }
 
     const { name } = verifyUser.user;
-    return { id: verifyUser.id, nivel: verifyUser.nivel, name };
+    return { id: verifyUser.id, level: verifyUser.level, name };
   }
 }

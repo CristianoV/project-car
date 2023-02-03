@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       },
     });
 
-    if (data.nivel !== 'admin') {
+    if (data.level !== 'admin') {
       return {
         redirect: {
           destination: '/',

@@ -6,6 +6,6 @@ export const WRONG_USER =
 
 export const USER = {
   id: 999,
-  nivel: 'admin',
+  level: 'admin',
   user: { name: 'CristianoV' },
 };

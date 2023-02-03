@@ -3,15 +3,15 @@ module.exports = {
     await queryInterface.bulkInsert('Accounts', [
       {
         id: 999,
-        nivel: 'admin',
+        level: 'admin',
       },
       {
         id: 998,
-        nivel: 'admin',
+        level: 'admin',
       },
       {
         id: 997,
-        nivel: 'user',
+        level: 'user',
       },
     ], {});
   },

@@ -6,7 +6,7 @@ class Account extends Model {
   public id!: number;
   public balance!: number;
   user: { name: string; };
-  nivel: string;
+  level: string;
 }
 
 Account.init({
@@ -17,7 +17,7 @@ Account.init({
     autoIncrement: true,
     references: { model: 'Users', key: 'accountId' },
   },
-  nivel: {
+  level: {
     type: STRING,
     allowNull: false,
   },

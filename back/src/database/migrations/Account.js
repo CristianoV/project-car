@@ -11,7 +11,7 @@ module.exports = {
           autoIncrement: true,
           allowNull: false,
         },
-        nivel: {
+        level: {
           type: Sequelize.STRING,
           allowNull: false,
         },

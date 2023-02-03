@@ -28,7 +28,7 @@ describe('Testando rota de servicy', () => {
 
       chai.expect(response.status).to.be.equal(202);
       chai.expect(response.status).to.equal(202);
-      chai.expect(response.body).to.be.keys('id', 'nivel', 'name');
+      chai.expect(response.body).to.be.keys('id', 'level', 'name');
     });
   });
   describe('Falha', () => {

@@ -170,7 +170,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       },
     });
 
-    if (verifyToken.nivel !== 'admin') {
+    if (verifyToken.level !== 'admin') {
       return {
         redirect: {
           destination: '/',
