@@ -7,6 +7,8 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { fetchFromApi } from '../../lib/axios';
 import { GetServerSideProps } from 'next';
+import ValidateUsername from '../../components/ValidateUsername';
+import ValidatePassword from '../../components/ValidatePassword';
 
 export default function Login() {
   const [user, setUser] = useState('');
@@ -63,17 +65,17 @@ export default function Login() {
               value={user}
               onChange={(e) => setUser(e.target.value)}
             />
+            <ValidateUsername username={user} />
             <input
               type='password'
               placeholder='Senha'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <ValidatePassword password={password} />
             <button type='submit'>Entrar</button>
           </form>
-          <h3>
-            Ainda não tem uma conta?
-          </h3>
+          <h3>Ainda não tem uma conta?</h3>
           <Link href='/register'>Registre-se</Link>
         </article>
       </section>
