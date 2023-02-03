@@ -21,22 +21,38 @@ export default function Admin({ token }: AdminProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const token = req.cookies.token || '';
-  if (!token) {
+  try {
+    const token = req.cookies.token || '';
+    if (!token) {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      };
+    }
+    const { data } = await fetchFromApi.get('/verify', {
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    if (data.nivel !== 'admin') {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+
     return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
+      props: {
+        token,
+        user: data,
       },
     };
-  }
-  const { data } = await fetchFromApi.get('/verify', {
-    headers: {
-      Authorization: token,
-    },
-  });
-
-  if (data.nivel !== 'admin') {
+  } catch (error) {
     return {
       redirect: {
         destination: '/',
@@ -44,11 +60,4 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       },
     };
   }
-
-  return {
-    props: {
-      token,
-      user: data,
-    },
-  };
 };
