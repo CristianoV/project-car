@@ -7,7 +7,7 @@ interface ValidatePasswordProps {
 export default function ValidatePassword({ password }: ValidatePasswordProps) {
   return (
     <div className={styles.container}>
-      <h3 className={password.length > 8 ? styles.correct : styles.wrong}>
+      <h3 className={password.length >= 8 ? styles.correct : styles.wrong}>
         8 caracteres
       </h3>
       <h3 className={password.match(/[A-Z]/) ? styles.correct : styles.wrong}>
