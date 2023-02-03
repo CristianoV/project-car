@@ -9,14 +9,9 @@ export default class RegisterService {
   constructor(private model: typeof User) {}
 
   public async registerAccount(nivel: string) {
-    const newAccount = await Account.create(
-      {
-        nivel,
-      },
-      {
-        raw: true,
-      }
-    );
+    const newAccount = await Account.create({
+      nivel,
+    });
 
     return newAccount;
   }
@@ -29,6 +24,11 @@ export default class RegisterService {
       const customMessage = JSON.parse(message);
 
       throw new Error(customMessage[0].message);
+    }
+
+    const existingUser = await this.model.findOne({ where: { name } });
+    if (existingUser) {
+      throw new Error('Username already exists.');
     }
 
     const { id: accountId } = await this.registerAccount('user' as any);
