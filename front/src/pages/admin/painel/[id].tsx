@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { fetchFromApi } from '../../../lib/axios';
 import styles from './styles[id].module.scss';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Car {
   id: string;
@@ -20,7 +21,13 @@ interface ICarEdit {
 }
 
 const ImagePreview: React.FC<{ imageUrl: string }> = ({ imageUrl }) => (
-  <img src={imageUrl} className='card-img-top' alt='Car' />
+  <Image
+    src={imageUrl}
+    className='card-img-top'
+    alt='Car'
+    placeholder='blur'
+    blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='
+  />
 );
 
 export default function AdminFormDel({ id, car, token }: ICarEdit) {

@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next';
+import Image from 'next/image';
 import { fetchFromApi } from '../../lib/axios';
 import styles from './styles.module.scss';
 
@@ -14,7 +15,12 @@ export default function Perfil({ user }: User) {
   return (
     <div className={styles.container}>
       <h1>Bem vindo {user.name}</h1>
-      <img src={`${process.env.NEXT_PUBLIC_API_URL}/files/avatar.png`} alt='' />
+      <Image
+        src={`${process.env.NEXT_PUBLIC_API_URL}files/avatar.png`}
+        alt={user.name}
+        placeholder='blur'
+        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='
+      />
     </div>
   );
 }

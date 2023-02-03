@@ -5,6 +5,7 @@ import { AiFillDelete } from 'react-icons/ai';
 import { FiEdit } from 'react-icons/fi';
 import Link from 'next/link';
 import { GetServerSideProps } from 'next';
+import Image from 'next/image';
 
 interface Car {
   id: string;
@@ -108,7 +109,13 @@ export default function AdminFormDel({ token }: IAminFormDel) {
       <div>
         {filteredCars.map((car) => (
           <div className={`card ${styles.images}`} key={car.id}>
-            <img src={car.foto} className='card-img-top' alt={car.name} />
+            <Image
+              src={car.foto}
+              className='card-img-top'
+              alt={car.name}
+              placeholder='blur'
+              blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='
+            />
             <div className='card-body'>
               <h5 className='card-title'>{car.name}</h5>
               <p className='card-title'>{car.marca}</p>
