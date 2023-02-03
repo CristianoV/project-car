@@ -7,7 +7,7 @@ module.exports = {
         marca: "Renault",
         value: 4500000,
         modelo: "2015",
-        foto: "http://localhost:3002/files/renault-sandero.jpg",
+        foto: `${process.env.DB_URL}renault-sandero.jpg`,
       },
       {
         id: 998,
@@ -15,7 +15,7 @@ module.exports = {
         marca: "Chevrolet",
         value: 800000,
         modelo: "1998",
-        foto: "http://localhost:3002/files/monza.jpg",
+        foto: `${process.env.DB_URL}monza.jpg`,
       },
       {
         id: 997,
@@ -23,7 +23,7 @@ module.exports = {
         marca: "Chevrolet",
         value: 700000,
         modelo: "1998",
-        foto: "http://localhost:3002/files/chevete.png",
+        foto: `${process.env.DB_URL}chevete.png`,
       },
       {
         id: 996,
@@ -31,7 +31,7 @@ module.exports = {
         marca: "Chevrolet",
         value: 7500000,
         modelo: "1998",
-        foto: "http://localhost:3002/files/ferrari.jpg",
+        foto: `${process.env.DB_URL}ferrari.jpg`,
       },
       {
         id: 995,
@@ -39,7 +39,7 @@ module.exports = {
         marca: "Chevrolet",
         value: 4000000,
         modelo: "1998",
-        foto: "http://localhost:3002/files/Fusca_branco.jpg",
+        foto: `${process.env.DB_URL}Fusca_branco.jpg`,
       },
       {
         id: 994,
@@ -47,7 +47,7 @@ module.exports = {
         marca: "Chevrolet",
         value: 4000000,
         modelo: "1998",
-        foto: "http://localhost:3002/files/Fusca.jpg",
+        foto: `${process.env.DB_URL}Fusca.jpg`,
       },
       {
         id: 993,
@@ -55,7 +55,7 @@ module.exports = {
         marca: "Chevrolet",
         value: 100000,
         modelo: "1998",
-        foto: "http://localhost:3002/files/fiat-marea.jpg",
+        foto: `${process.env.DB_URL}fiat-marea.jpg`,
       },
       {
         id: 992,
@@ -63,7 +63,7 @@ module.exports = {
         marca: "ford",
         value: 9500000,
         modelo: "1998",
-        foto: "http://localhost:3002/files/ford-gt-easy.jpg",
+        foto: `${process.env.DB_URL}ford-gt-easy.jpg`,
       },
       {
         id: 990,
@@ -71,7 +71,7 @@ module.exports = {
         marca: "Chevrolet",
         value: 9500001,
         modelo: "1998",
-        foto: "http://localhost:3002/files/uno_tunig.jpg",
+        foto: `${process.env.DB_URL}uno_tunig.jpg`,
       },
       {
         id: 989,
@@ -79,7 +79,7 @@ module.exports = {
         marca: "Chevrolet",
         value: 4200000,
         modelo: "1998",
-        foto: "http://localhost:3002/files/argo.jpg",
+        foto: `${process.env.DB_URL}argo.jpg`,
       },
     ], {});
   },
