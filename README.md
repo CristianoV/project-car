@@ -29,7 +29,6 @@ PG_DB=   Nome do banco de dados  Ex: postgres_db
 PGHOST=  Host do banco de dados  Ex: 127.0.0.1
 PGPORT=  Porta de acesso ao banco de dados  Ex: 5432
 ```
-
 </details>
 
 ### Variaveis de ambiente do Front end
@@ -74,6 +73,17 @@ npm start
 ```
 npm run test-back
 ```
+
+## :star: Usuários
+Usuários já criados para visualizações do conteudo:
+
+### Administrador
+Usuário: `admin`
+Senha: `@Admin1234`
+
+### Usuário Normal
+Usuário: `user`
+Senha: `@User1234`
 
 ## Autor
 
