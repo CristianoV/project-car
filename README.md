@@ -20,14 +20,26 @@ Veja como o projeto se parece tanto em dispositivos desktop quanto em dispositiv
 
 
 ```
-PORT=   Porta de inicialização Ex: 3333
-DB_URL=   Variavel de ambiente responsavel por seeders  Ex: http://localhost:3333/files/
+PORT=<porta_de_inicialização> (obrigatório)
+Esta variável especifica a porta utilizada pelo servidor para inicializar a aplicação. Por exemplo, o valor "3333" fará com que o servidor inicialize na porta 3333.
 
-PG_PASS=   Variavel de ambiente responsavel pela senha do banco de dados  Ex: admin
-PG_USER=   Variavel de ambiente responsavel pelo usuario do banco  Ex: admin
-PG_DB=   Nome do banco de dados  Ex: postgres_db
-PGHOST=  Host do banco de dados  Ex: 127.0.0.1
-PGPORT=  Porta de acesso ao banco de dados  Ex: 5432
+DB_URL=<URL_do_banco_de_dados> (obrigatório)
+Esta variável é usada para definir a URL do banco de dados usado pelo sistema. Exemplo: "http://localhost:3333/files/".
+
+PG_PASS=<senha_do_banco_de_dados> (obrigatório)
+Esta variável contém a senha de acesso ao banco de dados PostgreSQL. Por exemplo, o valor "admin".
+
+PG_USER=<usuário_do_banco_de_dados> (obrigatório)
+Esta variável contém o nome de usuário para acessar o banco de dados PostgreSQL. Por exemplo, o valor "admin".
+   
+PG_DB=<nome_do_banco_de_dados> (obrigatório)
+Este é o nome do banco de dados PostgreSQL que o sistema irá utilizar. Por exemplo, o valor "postgres_db".
+
+PGHOST=<host_do_banco_de_dados> (obrigatório)
+Este é o host do banco de dados PostgreSQL que o sistema irá utilizar. Por exemplo, o valor "127.0.0.1".
+
+PGPORT=<porta_do_banco_de_dados> (obrigatório)
+Este é a porta de acesso ao banco de dados PostgreSQL que o sistema irá utilizar. Por exemplo, o valor "5432".
 ```
 </details>
 
@@ -36,7 +48,9 @@ PGPORT=  Porta de acesso ao banco de dados  Ex: 5432
   <summary>Clique aqui para expandir</summary>
 
 ```
-NEXT_PUBLIC_API_URL=  Variavel de ambiente responsavel pelas requisições no banco de dados Ex: http://localhost:3333/
+NEXT_PUBLIC_API_URL:<Link_para_requisição_no_Back_end> (obrigatório)
+Essa variável é crucial para o funcionamento do front-end, pois define a URL que será utilizada para realizar requisições ao banco de dados. Ela é responsável por estabelecer a conexão entre a interface do usuário e o back-end, permitindo que as informações sejam exibidas corretamente na tela. O valor padrão é `http://localhost:3333/`, mas pode ser alterado de acordo com a necessidade do projeto.
+
 ```
 </details>
 
@@ -47,9 +61,9 @@ NEXT_PUBLIC_API_URL=  Variavel de ambiente responsavel pelas requisições no ba
   <summary>Clique aqui para expandir</summary>
 
 ```
-PG_PASS= Senha do banco de dados
-PG_USER= Usuario do banco de dados
-PG_DB=   Nome do banco de dados postgress
+PG_PASS= Senha utilizada para acessar o banco de dados PostgreSQL
+PG_USER= Nome de usuário para acessar o banco de dados PostgreSQL
+PG_DB=   Nome do banco de dados PostgreSQL
 ```
 </details>
 
