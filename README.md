@@ -14,6 +14,7 @@ Veja como o projeto se parece tanto em dispositivos desktop quanto em dispositiv
 </p>
 
 # Instruções da aplicação
+Cada arquivo deve ser criado em seu respectivo lugar. ou renomear o arquivo .env.example para .env
 ### Variaveis de ambiente do Back end
 <details>
   <summary>Clique aqui para expandir</summary>
@@ -21,7 +22,8 @@ Veja como o projeto se parece tanto em dispositivos desktop quanto em dispositiv
 
 ```
 PORT=<porta_de_inicialização> (obrigatório)
-Esta variável especifica a porta utilizada pelo servidor para inicializar a aplicação. Por exemplo, o valor "3333" fará com que o servidor inicialize na porta 3333.
+Esta variável especifica a porta utilizada pelo servidor para inicializar a aplicação.
+Por exemplo, o valor "3333" fará com que o servidor inicialize na porta 3333.
 
 DB_URL=<URL_do_banco_de_dados> (obrigatório)
 Esta variável é usada para definir a URL do banco de dados usado pelo sistema. Exemplo: "http://localhost:3333/files/".
@@ -49,7 +51,11 @@ Este é a porta de acesso ao banco de dados PostgreSQL que o sistema irá utiliz
 
 ```
 NEXT_PUBLIC_API_URL:<Link_para_requisição_no_Back_end> (obrigatório)
-Essa variável é crucial para o funcionamento do front-end, pois define a URL que será utilizada para realizar requisições ao banco de dados. Ela é responsável por estabelecer a conexão entre a interface do usuário e o back-end, permitindo que as informações sejam exibidas corretamente na tela. O valor padrão é `http://localhost:3333/`, mas pode ser alterado de acordo com a necessidade do projeto.
+Essa variável é crucial para o funcionamento do front-end,
+pois define a URL que será utilizada para realizar requisições ao banco de dados.
+Ela é responsável por estabelecer a conexão entre a interface do usuário e o back-end,
+permitindo que as informações sejam exibidas corretamente na tela.
+O valor padrão é `http://localhost:3333/`, mas pode ser alterado de acordo com a necessidade do projeto.
 
 ```
 </details>
@@ -61,9 +67,9 @@ Essa variável é crucial para o funcionamento do front-end, pois define a URL q
   <summary>Clique aqui para expandir</summary>
 
 ```
-PG_PASS= Senha utilizada para acessar o banco de dados PostgreSQL
-PG_USER= Nome de usuário para acessar o banco de dados PostgreSQL
-PG_DB=   Nome do banco de dados PostgreSQL
+PG_PASS= Senha utilizada para acessar o banco de dados PostgreSQL por exemplo: admin
+PG_USER= Nome de usuário para acessar o banco de dados PostgreSQL por exemplo: admin
+PG_DB=   Nome do banco de dados PostgreSQL por exemplo: postgres_db
 ```
 </details>
 
