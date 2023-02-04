@@ -3,14 +3,7 @@ Projeto Car
 </h1>
 
 ## :books: Contexto
-O Projeto simula uma pagina de uma concessionaria
-
-- `CADASTRO`
-- `LOGIN`
-
-Tudo isso com algumas seguranças como token JWT e Bcrypt para a encriptação de dados sigilosos
-
-Como bônus, foram desenvolvidos alguns testes de integração para algumas rotas do back, esse projeto foi muito divertido de codar e pretendo continuar atualizando, adicionando mais testes para as camadas do back e iniciar os do front.
+Este é um site de simulação de concessionária, desenvolvido para oferecer uma plataforma segura e confiável para gerenciar o estoque de veículos. Ele permite que apenas administradores editem, adicionem e excluam carros, garantindo a integridade dos dados. As tecnologias bcrypt e token JWT são usadas para criptografar as senhas dos usuários e garantir a autenticação, protegendo contra acesso não autorizado ou ataques maliciosos. Além disso, testes de integração foram desenvolvidos para algumas rotas do back-end, e o desenvolvedor tem planos de continuar atualizando o projeto, adicionando mais testes e iniciando o desenvolvimento do front-end. O site pode ser visualizado a partir do link https://cristianocar.vercel.app/. Em resumo, este é um projeto divertido e desafiador que oferece uma plataforma segura para gerenciar o estoque de veículos em uma concessionária virtual.
 
 # Instruções da aplicação
 ### Variaveis de ambiente do Back end
