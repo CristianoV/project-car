@@ -41,6 +41,19 @@ NEXT_PUBLIC_API_URL=  Variavel de ambiente responsavel pelas requisições no ba
 ```
 </details>
 
+</details>
+
+### Variaveis de ambiente do Banco de dados
+<details>
+  <summary>Clique aqui para expandir</summary>
+
+```
+PG_PASS= Senha do banco de dados
+PG_USER= Usuario do banco de dados
+PG_DB=   Nome do banco de dados postgress
+```
+</details>
+
 ### Dando start no projeto
 <details>
   <summary>Clique aqui para expandir</summary>
