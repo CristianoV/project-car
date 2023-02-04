@@ -5,6 +5,14 @@ Projeto Car
 ## :books: Contexto
 Este é um site de simulação de concessionária, desenvolvido para oferecer uma plataforma segura e confiável para gerenciar o estoque de veículos. Ele permite que apenas administradores editem, adicionem e excluam carros, garantindo a integridade dos dados. As tecnologias bcrypt e token JWT são usadas para criptografar as senhas dos usuários e garantir a autenticação, protegendo contra acesso não autorizado ou ataques maliciosos. Além disso, testes de integração foram desenvolvidos para algumas rotas do back-end, e o desenvolvedor tem planos de continuar atualizando o projeto, adicionando mais testes e iniciando o desenvolvimento do front-end. O site pode ser visualizado a partir do link https://cristianocar.vercel.app/. Em resumo, este é um projeto divertido e desafiador que oferece uma plataforma segura para gerenciar o estoque de veículos em uma concessionária virtual.
 
+## :art: Visualizações
+Veja como o projeto se parece tanto em dispositivos desktop quanto em dispositivos móveis:
+
+<p align="center">
+   <img alt="Desktop" src="https://raw.githubusercontent.com/CristianoV/project-car/master/InicialDesktop.png" width="500px" />
+    <img alt="Mobile" src="https://raw.githubusercontent.com/CristianoV/project-car/master/InicialMobile.png" width="120px" />
+</p>
+
 # Instruções da aplicação
 ### Variaveis de ambiente do Back end
 <details>
