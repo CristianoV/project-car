@@ -2,9 +2,9 @@ import 'dotenv/config';
 import { Options } from 'sequelize';
 
 const config: Options = {
-  username: process.env.PGUSER,
-  password: process.env.PGPASSWORD,
-  database: process.env.PGDATABASE,
+  username: process.env.PG_PASS,
+  password: process.env.PG_USER,
+  database: process.env.PG_DB,
   host: process.env.PGHOST,
   port: Number(process.env.PGPORT),
   dialect: 'postgres',
