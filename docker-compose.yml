@@ -1,44 +1,6 @@
 version: '3.9'
 
 services:
-  frontend:
-    build: ./front
-    ports:
-      - 3000:3000
-    platform: linux/x86_64
-    working_dir: /front
-    depends_on:
-      backend:
-        condition: service_healthy
-    environment:
-      NEXT_PUBLIC_API_URL: backend:3333/
-      NEXTAUTH_URL: http://localhost:3000/
-      SECRET: secret
-    healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:3000"]
-      timeout: 10s
-      retries: 5
-  backend:
-    build: ./back
-    ports:
-      - 3333:3333
-    platform: linux/x86_64
-    working_dir: /back
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      - PORT=3333
-      - PG_PASS=admin
-      - PG_USER=admin
-      - PG_DB=postgres_db
-      - PGHOST=db
-      - PGPORT=5432
-      - DB_URL=http://localhost:3333/files/
-    healthcheck:
-      test: ['CMD', 'lsof', '-t', '-i:3333']
-      timeout: 10s
-      retries: 5
   db:
     image: postgres
     container_name: db
