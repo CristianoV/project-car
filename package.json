@@ -1,0 +1,25 @@
+{
+  "name": "project-car",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run startfront & npm run startback",
+    "prestart": "cd back && npm install && cd ../front && npm install && cd ..",
+    "test-back": "cd back && npm test",
+    "startbanco": "docker-compose up -d",
+    "startfront": "cd front && npm start",
+    "startback": "cd back && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CristianoV/project-car.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CristianoV/project-car/issues"
+  },
+  "homepage": "https://github.com/CristianoV/project-car#readme"
+}
